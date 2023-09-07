@@ -19,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($_POST['email'])) {
 
         $error['user_email'] = "This is required";
-
     } else {
 
         // select query to get user detail
@@ -32,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $user_email = $user["email"];
                 $user_password = $user["password"];
                 $user_id = $user['id'];
-
             }
         } else {
             $error['user_email'] = "User not found";
@@ -51,13 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     //adding a session if name passwrd matches
-    if ( (count($error) <= 0) && strtolower($_POST['email']) == strtolower($user_email) && $_POST['password'] == $user_password) {
+    if ((count($error) <= 0) && strtolower($_POST['email']) == strtolower($user_email) && $_POST['password'] == $user_password) {
         $_SESSION['user_login'] = true;
         $_SESSION['user_email'] = $user_email;
         $_SESSION['user_id'] = $user_id;
     }
-
-    
 }
 
 
@@ -76,11 +72,33 @@ if (isset($_SESSION['user_login']) && $_SESSION['user_login'] == true) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <!-- Other meta tags and stylesheets -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <!-- My own Style sheet Css -->
+    <link rel="stylesheet" href="./CSS/style.css">
+
+    <style>
+        .blur {
+            /* Add the blur effect */
+            filter: blur(8px);
+            -webkit-filter: blur(8px);
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+
 </head>
 
 <body>
-
-    <h1 style="text-align:left;"> Please Login</h1>
 
     <form method="POST" action="login.php">
 
@@ -114,9 +132,9 @@ if (isset($_SESSION['user_login']) && $_SESSION['user_login'] == true) {
         <button type="submit">Sign in</button>
         <br>
         <br>
-        <!-- <a href="/miniProject/register.php" >Not registerd? Goto Sign up page</a> -->
 
     </form>
+
 
 
 
