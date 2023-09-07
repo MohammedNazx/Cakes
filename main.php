@@ -55,31 +55,29 @@ $wedding = $conn->query($sql_wedding);
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item ">
+                    <li class="nav-item">
 
                         <a href="./profile.php">
-                            <button type="button" class="btn btn-outline-danger position-relative">
+                            <button type="button nav-link dropdown-toggle" class="btn btn-outline-danger position-relative">
                                 My Profile
                             </button>
+                        </a>
+
                     </li>
-                    </a>
 
                     <li class="nav-item">
                         <a class="nav-link" href="">Customize</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Order</a>
-                    </li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            More
+                            Order
                         </a>
                         <ul class="dropdown-menu">
 
-                            <li><a class="dropdown-item" href="#">Contact</a></li>
-                            <li><a class="dropdown-item" href="#">About</a></li>
+                            <li><a class="dropdown-item" href="./viewcart.php">Cart</a></li>
+                            <li><a class="dropdown-item" href="#">Previous Order</a></li>
                             <li><a class="dropdown-item" href="#">Support</a></li>
 
                         </ul>
@@ -157,8 +155,9 @@ $wedding = $conn->query($sql_wedding);
                                 <div class="card-title"><?php echo $row["title"] ?></div>
                                 <div class="card-text"><?php echo $row["text"] ?></div>
 
-                                <form action="./cart.php" method="post">
-                                    <button type="submit" name="test" class="btn btn-danger">Buy now</button>
+                                <form action="./addtocart.php" method="post">
+                                    <input type="hidden" name="item_name" value="<?php echo $row["title"]?>">
+                                    <button type="submit" name="addToCart" class="btn btn-danger">Buy now</button>
                                 </form>
                             </div>
 
