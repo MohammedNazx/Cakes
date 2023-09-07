@@ -81,21 +81,6 @@ if (isset($_SESSION['user_login']) && $_SESSION['user_login'] == true) {
     <!-- My own Style sheet Css -->
     <link rel="stylesheet" href="./CSS/style.css">
 
-    <style>
-        .blur {
-            /* Add the blur effect */
-            filter: blur(8px);
-            -webkit-filter: blur(8px);
-        }
-
-        .centered {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-    </style>
-
 </head>
 
 <body>
