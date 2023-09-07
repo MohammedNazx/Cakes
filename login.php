@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ( (count($error) <= 0) && strtolower($_POST['email']) == strtolower($user_email) && $_POST['password'] == $user_password) {
         $_SESSION['user_login'] = true;
         $_SESSION['user_email'] = $user_email;
-        $_Seesion['user_id'] = $user_id;
+        $_SESSION['user_id'] = $user_id;
     }
 
     
