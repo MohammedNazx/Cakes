@@ -10,8 +10,10 @@ $error = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+    // creating local variable for using in php
     $user_email = null;
     $user_password = null;
+    $user_id = null;
 
     //user name
     if (empty($_POST['email'])) {
@@ -29,6 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             while ($user = $user_details->fetch_assoc()) {
                 $user_email = $user["email"];
                 $user_password = $user["password"];
+                $user_id = $user['id'];
+
             }
         } else {
             $error['user_email'] = "User not found";
@@ -50,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ( (count($error) <= 0) && strtolower($_POST['email']) == strtolower($user_email) && $_POST['password'] == $user_password) {
         $_SESSION['user_login'] = true;
         $_SESSION['user_email'] = $user_email;
+        $_Seesion['user_id'] = 
     }
 
     
