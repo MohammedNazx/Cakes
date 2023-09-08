@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_login']) || $_SESSION['user_login'] != true) {
     exit;
 }
 
-include("./DataBase/db.php");
+include("../DataBase/db.php");
 
 $sql_banner = "SELECT * FROM banner";
 $banner = $conn->query($sql_banner);
@@ -48,7 +48,7 @@ if (isset($_SESSION['cart_message'])) {
 
 
     <!-- My own Style sheet Css -->
-    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="../CSS/style.css">
 </head>
 
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
