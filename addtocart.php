@@ -20,8 +20,13 @@ if (isset($_POST['addToCart'])) {
     $sql = "INSERT INTO `cart` (item_name,user_id) VALUES ('$item_name','$user_id')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        $_SESSION['cart_message'] ="New record created successfully";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        $_SESSION['cart_message'] ="New record failed";
     }
+
+    header("location: /cakes/main.php");
+    exit;
+
+    
 }

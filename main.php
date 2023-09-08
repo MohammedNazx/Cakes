@@ -22,6 +22,16 @@ $birthday = $conn->query($sql_birthday);
 $sql_wedding = "SELECT * FROM wedding";
 $wedding = $conn->query($sql_wedding);
 
+//checking for message
+$alert_message = null;
+
+if (isset($_SESSION['cart_message'])) {
+
+    $alert_message = $_SESSION['cart_message'];
+
+    unset($_SESSION['cart_message']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -52,6 +62,8 @@ $wedding = $conn->query($sql_wedding);
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -97,6 +109,13 @@ $wedding = $conn->query($sql_wedding);
     <!-- MAIN BODY SECTION -->
     <div class="container-fluid mt-2">
 
+        <?php if (!empty($alert_message)) { ?>
+
+            <div style="color: black; background-color:goldenrod">
+                <p> <?php echo $alert_message ; ?> </p>
+            </div>
+        <?php } ?>
+        
         <!-- CAROUSEL STARTS -->
         <div id="carouselExampleFade" class="carousel slide carousel-fade pt-3 " data-bs-ride="carousel">
 
@@ -156,9 +175,10 @@ $wedding = $conn->query($sql_wedding);
                                 <div class="card-text"><?php echo $row["text"] ?></div>
 
                                 <form action="./addtocart.php" method="post">
-                                    <input type="hidden" name="item_name" value="<?php echo $row["title"]?>">
+                                    <input type="hidden" name="item_name" value="<?php echo $row["title"] ?>">
                                     <button type="submit" name="addToCart" class="btn btn-danger">Buy now</button>
                                 </form>
+
                             </div>
 
                         </div>
