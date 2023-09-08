@@ -2,7 +2,7 @@
 session_start();
 
 // including database connection 
-include("./DataBase/db.php");
+include("../DataBase/db.php");
 
 //initialization
 $error = [];
