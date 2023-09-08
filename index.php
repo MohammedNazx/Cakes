@@ -1,5 +1,6 @@
 <?php
-include("./db.php");
+
+include("./DataBase/db.php");
 
 $sql_banner = "SELECT * FROM banner";
 $banner = $conn->query($sql_banner);
@@ -48,7 +49,7 @@ $wedding = $conn->query($sql_wedding);
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item ">
 
-                    <a href="./login.php">
+                    <a href="./Login/login.php">
                         <button type="button" class="btn btn-outline-danger position-relative">
                             Sign in / up
                         </button>

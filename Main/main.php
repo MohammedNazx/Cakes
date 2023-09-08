@@ -4,11 +4,11 @@ session_start();
 
 //if seesion array is not set logout
 if (!isset($_SESSION['user_login']) || $_SESSION['user_login'] != true) {
-    header("Location: /cakes/login.php");
+    header("Location: /cakes/Login/login.php");
     exit;
 }
 
-include("./db.php");
+include("./DataBase/db.php");
 
 $sql_banner = "SELECT * FROM banner";
 $banner = $conn->query($sql_banner);
@@ -88,7 +88,7 @@ if (isset($_SESSION['cart_message'])) {
                         </a>
                         <ul class="dropdown-menu">
 
-                            <li><a class="dropdown-item" href="./viewcart.php">Cart</a></li>
+                            <li><a class="dropdown-item" href="../Cart/viewcart.php">Cart</a></li>
                             <li><a class="dropdown-item" href="#">Previous Order</a></li>
                             <li><a class="dropdown-item" href="#">Support</a></li>
 
@@ -174,7 +174,7 @@ if (isset($_SESSION['cart_message'])) {
                                 <div class="card-title"><?php echo $row["title"] ?></div>
                                 <div class="card-text"><?php echo $row["text"] ?></div>
 
-                                <form action="./addtocart.php" method="post">
+                                <form action="../Cart/addtocart.php" method="post">
                                     <input type="hidden" name="item_name" value="<?php echo $row["title"] ?>">
                                     <button type="submit" name="addToCart" class="btn btn-danger">Buy now</button>
                                 </form>

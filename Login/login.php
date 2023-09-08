@@ -2,7 +2,7 @@
 session_start();
 
 // including database connection 
-include './db.php';
+include("./DataBase/db.php");
 
 //initialization
 $error = [];
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 if (isset($_SESSION['user_login']) && $_SESSION['user_login'] == true) {
-    header("Location: /cakes/main.php");
+    header("Location: /cakes/Main/main.php");
     exit;
 }
 
