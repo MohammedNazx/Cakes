@@ -16,21 +16,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_id = null;
 
     //user name
-    if (empty($_POST['email'])) {
+    if (empty($_POST['user_email'])) {
 
         $error['user_email'] = "This is required";
     } else {
 
         // select query to get user detail
-        $get_user = "SELECT * FROM `users` WHERE email = '" . $_POST['email'] . "';";
+        $get_user = "SELECT * FROM `users` WHERE email = '" . $_POST['user_email'] . "';";
         $user_details = $conn->query($get_user);
 
         if ($user_details->num_rows > 0) {
             // output data of each row
             while ($user = $user_details->fetch_assoc()) {
-                $user_email = $user["email"];
-                $user_password = $user["password"];
-                $user_id = $user['id'];
+                //data are provided from data base
+                $user_email = $user["email"];//right on side is db column
+                $user_password = $user["password"];//right on side is db column
+                $user_id = $user['id'];//right on side is db column
             }
         } else {
             $error['user_email'] = "User not found";
@@ -38,10 +39,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     //password
-    if (empty($_POST['password'])) {
+    if (empty($_POST['user_password'])) {
         $error['password'] = "This is required";
     } else {
-        if ($_POST['password'] != $user_password) {
+        if ($_POST['user_password'] != $user_password) {
             $error['password'] = "Incorrect Password";
         }
     }
@@ -49,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     //adding a session if name passwrd matches
-    if ((count($error) <= 0) && strtolower($_POST['email']) == strtolower($user_email) && $_POST['password'] == $user_password) {
+    if ((count($error) <= 0) && strtolower($_POST['user_email']) == strtolower($user_email) && $_POST['user_password'] == $user_password) {
         $_SESSION['user_login'] = true;
         $_SESSION['user_email'] = $user_email;
         $_SESSION['user_id'] = $user_id;
@@ -92,7 +93,7 @@ if (isset($_SESSION['user_login']) && $_SESSION['user_login'] == true) {
             <tr>
                 <td> Email: </td>
                 <td>
-                    <input type="text" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : null; ?>">
+                    <input type="text" name="user_email" value="<?php echo isset($_POST['user_email']) ? $_POST['user_email'] : null; ?>">
                 </td>
             <tr>
             <tr>
@@ -104,7 +105,7 @@ if (isset($_SESSION['user_login']) && $_SESSION['user_login'] == true) {
 
             <tr>
                 <td> Password : </td>
-                <td> <input type="text" name="password" value="<?php echo (isset($_POST['password'])) ? $_POST['password'] : null; ?>"></td>
+                <td> <input type="text" name="user_password" value="<?php echo (isset($_POST['user_password'])) ? $_POST['user_password'] : null; ?>"></td>
             </tr>
             <tr>
                 <td></td>

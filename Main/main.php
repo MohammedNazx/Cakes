@@ -105,6 +105,7 @@ if (isset($_SESSION['cart_message'])) {
     </nav>
     <!-- NAVIGATION ENDS  -->
 
+    
 
     <!-- MAIN BODY SECTION -->
     <div class="container-fluid mt-2">
@@ -112,10 +113,10 @@ if (isset($_SESSION['cart_message'])) {
         <?php if (!empty($alert_message)) { ?>
 
             <div style="color: black; background-color:goldenrod">
-                <p> <?php echo $alert_message ; ?> </p>
+                <p> <?php echo $alert_message; ?> </p>
             </div>
         <?php } ?>
-        
+
         <!-- CAROUSEL STARTS -->
         <div id="carouselExampleFade" class="carousel slide carousel-fade pt-3 " data-bs-ride="carousel">
 
@@ -154,7 +155,6 @@ if (isset($_SESSION['cart_message'])) {
             <div id="section1" class="text-center">
                 <h1>New Launch</h1>
             </div>
-
 
             <div class="row gy-4 mt-3">
 
@@ -268,7 +268,11 @@ if (isset($_SESSION['cart_message'])) {
                             <div class="card-body">
                                 <div class="card-title"><?php echo $row["title"] ?></div>
                                 <div class="card-text"><?php echo $row["text"] ?></div>
-                                <a href="#" class="btn btn-danger">Buy now</a>
+
+                                <form action="../Cart/addtocart.php" method="post">
+                                    <input type="hidden" name="item_name" value="<?php echo $row["title"] ?>">
+                                    <button type="submit" name="addToCart" class="btn btn-danger">Buy now</button>
+                                </form>
                             </div>
 
                         </div>
@@ -308,7 +312,11 @@ if (isset($_SESSION['cart_message'])) {
                             <div class="card-body">
                                 <div class="card-title"><?php echo $row["title"] ?></div>
                                 <div class="card-text"><?php echo $row["text"] ?></div>
-                                <a href="#" class="btn btn-danger">Buy now</a>
+
+                                <form action="../Cart/addtocart.php" method="post">
+                                    <input type="hidden" name="item_name" value="<?php echo $row["title"] ?>">
+                                    <button type="submit" name="addToCart" class="btn btn-danger">Buy now</button>
+                                </form>
                             </div>
 
                         </div>
@@ -426,6 +434,9 @@ if (isset($_SESSION['cart_message'])) {
 
 
     </div><!-- MAIN BODY SECTION -->
+
+
+
 
     <!-- Footer -->
     <footer class="text-center text-lg-start text-dark" style="background-color: #ECEFF1">
