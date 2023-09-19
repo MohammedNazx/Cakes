@@ -2,7 +2,7 @@
 
 session_start();
 
-include("./DataBase/db.php");
+include("../DataBase/db.php");
 
 $user_id = $_SESSION["user_id"];
 

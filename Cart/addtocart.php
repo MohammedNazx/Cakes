@@ -2,12 +2,11 @@
 
 session_start();
 
-include("./DataBase/db.php");
+include("../DataBase/db.php");
 
 if (isset($_POST['addToCart'])) {
 
-    $item_name= $_POST['item_name'];
-
+    $item_id= $_POST['item_id'];
 
     $user_id = $_SESSION['user_id'];
 
@@ -17,7 +16,7 @@ if (isset($_POST['addToCart'])) {
     $result = $conn->query($user);
 
 
-    $sql = "INSERT INTO `cart` (item_name,user_id) VALUES ('$item_name','$user_id')";
+    $sql = "INSERT INTO `cart` (item_id,user_id) VALUES ('$item_id','$user_id')";
 
     if ($conn->query($sql) === TRUE) {
         $_SESSION['cart_message'] ="New record created successfully";
@@ -25,7 +24,7 @@ if (isset($_POST['addToCart'])) {
         $_SESSION['cart_message'] ="New record failed";
     }
 
-    header("location: /cakes/main.php");
+    header("location: /Cakes/Main/main.php");
     exit;
 
     

@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_login']) || $_SESSION['user_login'] != true) {
     exit;
 }
 
-include("./DataBase/db.php");
+include("../DataBase/db.php");
 
 $sql_banner = "SELECT * FROM banner";
 $banner = $conn->query($sql_banner);
@@ -48,7 +48,7 @@ if (isset($_SESSION['cart_message'])) {
 
 
     <!-- My own Style sheet Css -->
-    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="../CSS/style.css">
 </head>
 
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
@@ -63,33 +63,37 @@ if (isset($_SESSION['cart_message'])) {
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
+                    <li class="nav-item ">
 
                         <a href="./profile.php">
-                            <button type="button nav-link dropdown-toggle" class="btn btn-outline-danger position-relative">
-                                My Profile
+                            <button type="button" class="btn btn-outline-danger position-relative">
+                                Profile
                             </button>
-                        </a>
-
                     </li>
+                    </a>
 
                     <li class="nav-item">
                         <a class="nav-link" href="">Customize</a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Order</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Cart</a>
+                    </li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Order
+                            More
                         </a>
                         <ul class="dropdown-menu">
 
-                            <li><a class="dropdown-item" href="../Cart/viewcart.php">Cart</a></li>
-                            <li><a class="dropdown-item" href="#">Previous Order</a></li>
+                            <li><a class="dropdown-item" href="#">Contact</a></li>
+                            <li><a class="dropdown-item" href="#">About</a></li>
                             <li><a class="dropdown-item" href="#">Support</a></li>
 
                         </ul>
@@ -109,13 +113,6 @@ if (isset($_SESSION['cart_message'])) {
     <!-- MAIN BODY SECTION -->
     <div class="container-fluid mt-2">
 
-        <?php if (!empty($alert_message)) { ?>
-
-            <div style="color: black; background-color:goldenrod">
-                <p> <?php echo $alert_message ; ?> </p>
-            </div>
-        <?php } ?>
-        
         <!-- CAROUSEL STARTS -->
         <div id="carouselExampleFade" class="carousel slide carousel-fade pt-3 " data-bs-ride="carousel">
 
@@ -131,7 +128,7 @@ if (isset($_SESSION['cart_message'])) {
                 while ($row = $banner->fetch_assoc()) {
                 ?>
                     <div class="carousel-item active">
-                        <img src="../images/banner/<?php echo  $row["img"]; ?>" class="d-block w-100 rounded" alt="<?php echo $row["title"]; ?>" style="height: 80vh;">
+                        <img src="../images/banner/<?php echo $row['img'] ?>" class="d-block w-100 rounded" alt="" style="height: 80vh;">
                     </div>
                 <?php } ?>
 
@@ -167,17 +164,12 @@ if (isset($_SESSION['cart_message'])) {
                         <div class="card shadow">
 
                             <div class="inner">
-                                <img class="card-img-top" src="../images/product/<?php echo $row["img"]; ?>" alt="Card image">
+                                <img class="card-img-top" src="../images/product/<?php echo $row['img'] ?>" alt="Card image">
                             </div>
 
                             <div class="card-body">
                                 <div class="card-title"><?php echo $row["title"] ?></div>
-
-                                <form action="../Cart/addtocart.php" method="post">
-                                    <input type="hidden" name="item_name" value="<?php echo $row["title"] ?>">
-                                    <button type="submit" name="addToCart" class="btn btn-danger">Buy now</button>
-                                </form>
-
+                                <a href="#" class="btn btn-danger">Buy now</a>
                             </div>
 
                         </div>
@@ -261,12 +253,11 @@ if (isset($_SESSION['cart_message'])) {
                         <div class="card shadow">
 
                             <div class="inner">
-                                <img class="card-img-top" src="<?php echo $row["url"]; ?>" alt="Card image">
+                                <img class="card-img-top" src="../images/product/<?php echo $row['img'] ?>" alt="Card image">
                             </div>
 
                             <div class="card-body">
                                 <div class="card-title"><?php echo $row["title"] ?></div>
-                                <div class="card-text"><?php echo $row["text"] ?></div>
                                 <a href="#" class="btn btn-danger">Buy now</a>
                             </div>
 
@@ -301,12 +292,11 @@ if (isset($_SESSION['cart_message'])) {
                         <div class="card shadow">
 
                             <div class="inner">
-                                <img class="card-img-top" src="<?php echo $row["url"]; ?>" alt="Card image">
+                                <img class="card-img-top" src="../images/product/<?php echo $row["img"]; ?>" alt="Card image">
                             </div>
 
                             <div class="card-body">
                                 <div class="card-title"><?php echo $row["title"] ?></div>
-                                <div class="card-text"><?php echo $row["text"] ?></div>
                                 <a href="#" class="btn btn-danger">Buy now</a>
                             </div>
 
