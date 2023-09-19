@@ -6,17 +6,17 @@ include("../DataBase/db.php");
 
 if (isset($_POST['addToCart'])) {
 
-    $item_id= $_POST['item_id'];
+    $product_id= $_POST['product_id'];
 
     $user_id = $_SESSION['user_id'];
 
     // SQL Command
-    $user = "SELECT * FROM `user` WHERE id = $user_id ";
+    $user = "SELECT * FROM `users` WHERE id = $user_id ";
 
     $result = $conn->query($user);
 
 
-    $sql = "INSERT INTO `cart` (item_id,user_id) VALUES ('$item_id','$user_id')";
+    $sql = "INSERT INTO `cart` (product_id,user_id) VALUES ('$product_id','$user_id')";
 
     if ($conn->query($sql) === TRUE) {
         $_SESSION['cart_message'] ="New record created successfully";

@@ -113,6 +113,9 @@ if (isset($_SESSION['cart_message'])) {
     <!-- MAIN BODY SECTION -->
     <div class="container-fluid mt-2">
 
+
+        <?php echo "$alert_message" ?>
+
         <!-- CAROUSEL STARTS -->
         <div id="carouselExampleFade" class="carousel slide carousel-fade pt-3 " data-bs-ride="carousel">
 
@@ -169,7 +172,11 @@ if (isset($_SESSION['cart_message'])) {
 
                             <div class="card-body">
                                 <div class="card-title"><?php echo $row["title"] ?></div>
-                                <a href="#" class="btn btn-danger">Buy now</a>
+                                <form action="../Cart/addtocart.php" method="POST">
+
+                                    <input type="hidden" name="product_id" value="<?php echo $row['id'] ?>">
+                                    <button class="btn btn-danger" name="addToCart" type="submit">Buy Now</button>
+                                </form>
                             </div>
 
                         </div>
@@ -258,7 +265,11 @@ if (isset($_SESSION['cart_message'])) {
 
                             <div class="card-body">
                                 <div class="card-title"><?php echo $row["title"] ?></div>
-                                <a href="#" class="btn btn-danger">Buy now</a>
+                                <form action="../Cart/addtocart.php" method="POST">
+
+                                    <input type="hidden" name="product_id" value="<?php echo $row['id'] ?>">
+                                    <button class="btn btn-danger" name="addToCart" type="submit">Buy Now</button>
+                                </form>
                             </div>
 
                         </div>
@@ -297,7 +308,11 @@ if (isset($_SESSION['cart_message'])) {
 
                             <div class="card-body">
                                 <div class="card-title"><?php echo $row["title"] ?></div>
-                                <a href="#" class="btn btn-danger">Buy now</a>
+                                <form action="../Cart/addtocart.php" method="POST">
+
+                                    <input type="hidden" name="product_id" value="<?php echo $row['id'] ?>">
+                                    <button class="btn btn-danger" name="addToCart" type="submit">Buy Now</button>
+                                </form>
                             </div>
 
                         </div>
