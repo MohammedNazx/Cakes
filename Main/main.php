@@ -4,7 +4,7 @@ session_start();
 
 //if seesion array is not set logout
 if (!isset($_SESSION['user_login']) || $_SESSION['user_login'] != true) {
-    header("Location: /cakes/Login/login.php");
+    header("Location: /Cakes/Login/login.php");
     exit;
 }
 
@@ -13,13 +13,13 @@ include("./DataBase/db.php");
 $sql_banner = "SELECT * FROM banner";
 $banner = $conn->query($sql_banner);
 
-$sql_new_launch = "SELECT * FROM new_launch";
-$new_launch = $conn->query($sql_new_launch);
+$sql_launch = "SELECT * FROM products WHERE category = 'newLaunch' ";
+$new_launch = $conn->query($sql_launch);
 
-$sql_birthday = "SELECT * FROM birthday";
+$sql_birthday = "SELECT * FROM products WHERE category = 'birthday' ";
 $birthday = $conn->query($sql_birthday);
 
-$sql_wedding = "SELECT * FROM wedding";
+$sql_wedding = "SELECT * FROM products WHERE category = 'wedding' ";
 $wedding = $conn->query($sql_wedding);
 
 //checking for message
@@ -131,7 +131,7 @@ if (isset($_SESSION['cart_message'])) {
                 while ($row = $banner->fetch_assoc()) {
                 ?>
                     <div class="carousel-item active">
-                        <img src="<?php echo  $row["url"]; ?>" class="d-block w-100 rounded" alt="<?php echo $row["title"]; ?>" style="height: 80vh;">
+                        <img src="../images/banner/<?php echo  $row["img"]; ?>" class="d-block w-100 rounded" alt="<?php echo $row["title"]; ?>" style="height: 80vh;">
                     </div>
                 <?php } ?>
 
@@ -167,12 +167,11 @@ if (isset($_SESSION['cart_message'])) {
                         <div class="card shadow">
 
                             <div class="inner">
-                                <img class="card-img-top" src="<?php echo $row["url"]; ?>" alt="Card image">
+                                <img class="card-img-top" src="../images/product/<?php echo $row["img"]; ?>" alt="Card image">
                             </div>
 
                             <div class="card-body">
                                 <div class="card-title"><?php echo $row["title"] ?></div>
-                                <div class="card-text"><?php echo $row["text"] ?></div>
 
                                 <form action="../Cart/addtocart.php" method="post">
                                     <input type="hidden" name="item_name" value="<?php echo $row["title"] ?>">

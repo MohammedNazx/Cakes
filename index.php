@@ -5,13 +5,13 @@ include("./DataBase/db.php");
 $sql_banner = "SELECT * FROM banner";
 $banner = $conn->query($sql_banner);
 
-$sql_new_launch = "SELECT * FROM new_launch";
-$new_launch = $conn->query($sql_new_launch);
+$sql_launch = "SELECT * FROM products WHERE category = 'newLaunch' ";
+$new_launch = $conn->query($sql_launch);
 
-$sql_birthday = "SELECT * FROM birthday";
+$sql_birthday = "SELECT * FROM products WHERE category = 'birthday' ";
 $birthday = $conn->query($sql_birthday);
 
-$sql_wedding = "SELECT * FROM wedding";
+$sql_wedding = "SELECT * FROM products WHERE category = 'wedding' ";
 $wedding = $conn->query($sql_wedding);
 
 ?>
@@ -49,10 +49,10 @@ $wedding = $conn->query($sql_wedding);
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item ">
 
-                    <a href="./Login/login.php">
-                        <button type="button" class="btn btn-outline-danger position-relative">
-                            Sign in / up
-                        </button>
+                        <a href="./Login/login.php">
+                            <button type="button" class="btn btn-outline-danger position-relative">
+                                Sign in / up
+                            </button>
                     </li>
                     </a>
 
@@ -106,7 +106,7 @@ $wedding = $conn->query($sql_wedding);
                 while ($row = $banner->fetch_assoc()) {
                 ?>
                     <div class="carousel-item active">
-                        <img src="<?php echo  $row["url"]; ?>" class="d-block w-100 rounded" alt="<?php echo $row["title"]; ?>" style="height: 80vh;">
+                        <img src="./images/banner/<?php echo $row['img'] ?>" class="d-block w-100 rounded" alt="" style="height: 80vh;">
                     </div>
                 <?php } ?>
 
@@ -142,12 +142,11 @@ $wedding = $conn->query($sql_wedding);
                         <div class="card shadow">
 
                             <div class="inner">
-                                <img class="card-img-top" src="<?php echo $row["url"]; ?>" alt="Card image">
+                                <img class="card-img-top" src="./images/product/<?php echo $row['img'] ?>" alt="Card image">
                             </div>
 
                             <div class="card-body">
                                 <div class="card-title"><?php echo $row["title"] ?></div>
-                                <div class="card-text"><?php echo $row["text"] ?></div>
                                 <a href="#" class="btn btn-danger">Buy now</a>
                             </div>
 
@@ -232,12 +231,11 @@ $wedding = $conn->query($sql_wedding);
                         <div class="card shadow">
 
                             <div class="inner">
-                                <img class="card-img-top" src="<?php echo $row["url"]; ?>" alt="Card image">
+                                <img class="card-img-top" src="./images/product/<?php echo $row['img'] ?>" alt="Card image">
                             </div>
 
                             <div class="card-body">
                                 <div class="card-title"><?php echo $row["title"] ?></div>
-                                <div class="card-text"><?php echo $row["text"] ?></div>
                                 <a href="#" class="btn btn-danger">Buy now</a>
                             </div>
 
@@ -272,12 +270,11 @@ $wedding = $conn->query($sql_wedding);
                         <div class="card shadow">
 
                             <div class="inner">
-                                <img class="card-img-top" src="<?php echo $row["url"]; ?>" alt="Card image">
+                                <img class="card-img-top" src="./images/product/<?php echo $row["img"]; ?>" alt="Card image">
                             </div>
 
                             <div class="card-body">
                                 <div class="card-title"><?php echo $row["title"] ?></div>
-                                <div class="card-text"><?php echo $row["text"] ?></div>
                                 <a href="#" class="btn btn-danger">Buy now</a>
                             </div>
 

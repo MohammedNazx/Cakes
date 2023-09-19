@@ -4,7 +4,7 @@ session_start();
 
 //if seesion array is not set logout
 if (!isset($_SESSION['user_login']) || $_SESSION['user_login'] != true) {
-    header("Location: /cakes/login.php");
+    header("Location: /Cakes/login.php");
     exit;
 }
 
