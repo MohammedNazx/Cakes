@@ -1,0 +1,49 @@
+CREATE TABLE `cakes`.`users` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(255) NOT NULL,
+    `email` VARCHAR(255) NOT NULL,
+    `password` VARCHAR(255) NOT NULL,
+    `is_active` BOOLEAN NOT NULL DEFAULT TRUE,
+    `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
+
+-- PRODUCT TABLE
+CREATE TABLE `cakes`.`products` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(255) NOT NULL,
+    `img_url` VARCHAR(255) NOT NULL,
+    `title` VARCHAR(255) NOT NULL,
+    `description` TEXT NOT NULL,
+    `price` DOUBLE NOT NULL,
+    `discount` DOUBLE NOT NULL,
+    `qty` MEDIUMINT NOT NULL,
+    `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
+
+-- CART TABLE 
+CREATE TABLE `cakes`.`cart` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `user_id` INT NOT NULL,
+    `product_id` INT NOT NULL,
+    `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+) ENGINE = InnoDB;
+
+-- BANNER TABLE 
+CREATE TABLE `cakes`.`banner` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `img` BLOB NOT NULL,
+    `order` MEDIUMINT NOT NULL DEFAULT '0',
+    `created_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+    
+
+) ENGINE = InnoDB;
